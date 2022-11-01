@@ -1,5 +1,3 @@
-import 'package:farmapk/models/document_model.dart';
-import 'package:farmapk/styles/estilos_app.dart';
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 

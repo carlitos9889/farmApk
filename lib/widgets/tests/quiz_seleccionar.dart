@@ -1,19 +1,13 @@
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/provider/logica_provider.dart';
-import 'package:farmapk/styles/estilos_app.dart';
 import 'package:farmapk/widgets/tests/armar_evaluacion.dart';
 import 'package:farmapk/widgets/tests/scrooll_sin_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class QuizSeleccionar extends StatefulWidget {
-  const QuizSeleccionar({
-    Key? key,
-    required this.quiz,
-    required this.estadoBoton,
-  }) : super(key: key);
+  const QuizSeleccionar({Key? key, required this.quiz}) : super(key: key);
   final Quiz quiz;
-  final bool estadoBoton;
 
   @override
   State<QuizSeleccionar> createState() => _QuizSeleccionarState();
@@ -66,28 +60,33 @@ class _QuizSeleccionarState extends State<QuizSeleccionar> {
                       right: size.width * 0.08,
                     ),
                     decoration: BoxDecoration(
-                      color: _getColorBackground(widget.quiz, index),
+                      // color: _getColorBackground(widget.quiz, index),
                       border: Border.all(
-                        color: _getColorBorder(widget.quiz, index),
-                      ),
+                          // color: _getColorBorder(widget.quiz, index),
+                          ),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: CheckboxListTile(
-                      activeColor:
-                          widget.estadoBoton ? colorGreenAccent : Colors.white,
+                      // activeColor:
+                      //     widget.estadoBoton ? colorGreenAccent : Colors.white,
                       controlAffinity: ListTileControlAffinity.leading,
                       value: checks[index],
                       title: Text(
                         widget.quiz.respuestasposibles[index],
                         style: const TextStyle(color: Colors.black),
                       ),
-                      onChanged: widget.estadoBoton
-                          ? (value) {
-                              setState(() {
-                                checks[index] = value!;
-                              });
-                            }
-                          : _logicaRevisar(index),
+                      // onChanged: widget.estadoBoton
+                      //     ? (value) {
+                      //         setState(() {
+                      //           checks[index] = value!;
+                      //         });
+                      //       }
+                      //     : _logicaRevisar(index),
+                      onChanged: (value) {
+                        setState(() {
+                          checks[index] = value!;
+                        });
+                      },
                     ),
                   );
                 }),
@@ -99,50 +98,45 @@ class _QuizSeleccionarState extends State<QuizSeleccionar> {
     );
   }
 
-  Color _getColorBorder(Quiz quiz, int index) {
-    // ------- Estado de seleccionar respuesta ---------- //
-    final List<String> resp =
-        quiz.respuestascorrectas.map((resp) => resp.toLowerCase()).toList();
-    final String respActual = quiz.respuestasposibles[index].toLowerCase();
+  // Color _getColorBorder(Quiz quiz, int index) {
+  //   // ------- Estado de seleccionar respuesta ---------- //
+  //   final List<String> resp =
+  //       quiz.respuestascorrectas.map((resp) => resp.toLowerCase()).toList();
+  //   final String respActual = quiz.respuestasposibles[index].toLowerCase();
 
-    if (widget.estadoBoton) {
-      return checks[index] ? colorAmbar : colorGreenLightLight;
-      // ------- Estado de revisar y la respuesta es correcta --------- //
-    } else if (checks[index] && resp.contains(respActual)) {
-      return colorGreenAccent;
-      // ------- Estado de revisar y la respuesta es incorrecta --------- //
-    } else if (checks[index] && !resp.contains(respActual)) {
-      return Colors.red;
-      // ------- Estado de revisar y la respuesta correcta no es seleccionada --------- //
-    } else if (!checks[index] && resp.contains(respActual)) {
-      return colorGreenAccent;
-    } else {
-      return Colors.grey;
-    }
-  }
+  //   if (widget.estadoBoton) {
+  //     return checks[index] ? colorAmbar : colorGreenLightLight;
+  //     // ------- Estado de revisar y la respuesta es correcta --------- //
+  //   } else if (checks[index] && resp.contains(respActual)) {
+  //     return colorGreenAccent;
+  //     // ------- Estado de revisar y la respuesta es incorrecta --------- //
+  //   } else if (checks[index] && !resp.contains(respActual)) {
+  //     return Colors.red;
+  //     // ------- Estado de revisar y la respuesta correcta no es seleccionada --------- //
+  //   } else if (!checks[index] && resp.contains(respActual)) {
+  //     return colorGreenAccent;
+  //   } else {
+  //     return Colors.grey;
+  //   }
+  // }
 
-  _getColorBackground(Quiz quiz, int index) {
-    final List<String> resp =
-        quiz.respuestascorrectas.map((resp) => resp.toLowerCase()).toList();
-    final String respActual = quiz.respuestasposibles[index].toLowerCase();
-    if (widget.estadoBoton) {
-      return Colors.white;
-      // ------- Estado de revisar y la respuesta es correcta --------- //
-    } else if (checks[index] && resp.contains(respActual)) {
-      return colorGreenAccent;
-      // ------- Estado de revisar y la respuesta es incorrecta --------- //
-    } else if (checks[index] && !resp.contains(respActual)) {
-      return Colors.red;
-      // ------- Estado de revisar y la respuesta correcta no es seleccionada --------- //
-    } else if (!checks[index] && resp.contains(respActual)) {
-      return colorGreenLight;
-    } else {
-      return Colors.transparent;
-    }
-  }
-
-  _logicaRevisar(int index) {
-    if (checks[index]) {}
-    return null;
-  }
+  // _getColorBackground(Quiz quiz, int index) {
+  //   final List<String> resp =
+  //       quiz.respuestascorrectas.map((resp) => resp.toLowerCase()).toList();
+  //   final String respActual = quiz.respuestasposibles[index].toLowerCase();
+  //   if (widget.estadoBoton) {
+  //     return Colors.white;
+  //     // ------- Estado de revisar y la respuesta es correcta --------- //
+  //   } else if (checks[index] && resp.contains(respActual)) {
+  //     return colorGreenAccent;
+  //     // ------- Estado de revisar y la respuesta es incorrecta --------- //
+  //   } else if (checks[index] && !resp.contains(respActual)) {
+  //     return Colors.red;
+  //     // ------- Estado de revisar y la respuesta correcta no es seleccionada --------- //
+  //   } else if (!checks[index] && resp.contains(respActual)) {
+  //     return colorGreenLight;
+  //   } else {
+  //     return Colors.transparent;
+  //   }
+  // }
 }

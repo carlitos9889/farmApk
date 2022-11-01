@@ -1,11 +1,8 @@
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/pages/home_page.dart';
 import 'package:farmapk/provider/logica_provider.dart';
-import 'package:farmapk/widgets/tests/quiz_completar.dart';
 import 'package:farmapk/widgets/tests/quiz_seleccionar.dart';
-import 'package:farmapk/widgets/tests/quiz_chek_generic.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -63,14 +60,14 @@ class _ResolveQuizPageState extends State<ResolveQuizPage> {
                         fontWeight: FontWeight.w700, fontSize: 27),
                   ),
                 ),
-                LinearPercentIndicator(
-                  lineHeight: 13,
-                  barRadius: const Radius.circular(100),
-                  progressColor: const Color(0xff1A86C7),
-                  percent: numQuiz / widget.quizList.length,
-                  animation: true,
-                  animateFromLastPercent: true,
-                ),
+                // LinearPercentIndicator(
+                //   lineHeight: 13,
+                //   barRadius: const Radius.circular(100),
+                //   progressColor: const Color(0xff1A86C7),
+                //   percent: numQuiz / widget.quizList.length,
+                //   animation: true,
+                //   animateFromLastPercent: true,
+                // ),
                 const Expanded(child: SizedBox()),
                 // ------------- Boton de revisar y pasar al siguinte quiz ---------------- //
                 if (MediaQuery.of(context).viewInsets.bottom == 0)
@@ -127,10 +124,10 @@ class _ResolveQuizPageState extends State<ResolveQuizPage> {
   }
 
   Widget _escogerWidget(Quiz quiz) {
-    final bool estadoBoton = txtButtom == 'Revisar' ? true : false;
+    // final bool estadoBoton = txtButtom == 'Revisar' ? true : false;
     switch (quiz.tipo) {
       case 'seleccionar':
-        return QuizSeleccionar(quiz: quiz, estadoBoton: estadoBoton);
+        return QuizSeleccionar(quiz: quiz);
       case 'v_f':
         // return QuizCheckGenerico(quiz: quiz, estadoBoton: estadoBoton);
         return const Center(child: Text('En contruccion'));

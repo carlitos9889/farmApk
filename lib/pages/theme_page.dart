@@ -9,7 +9,7 @@ class ThemePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    // final Size size = MediaQuery.of(context).size;
     final DataTema tema =
         ModalRoute.of(context)!.settings.arguments as DataTema;
 

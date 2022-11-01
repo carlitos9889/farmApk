@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:farmapk/helpers/format_data_to_json.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/pages/book_page.dart';
@@ -34,7 +33,7 @@ class HomePage extends StatelessWidget {
                       indicatorColor: Colors.white,
                       tabs: [
                         Tab(icon: Icon(Icons.home)),
-                        Tab(icon: Icon(Icons.description)),
+                        Tab(icon: Icon(Icons.book)),
                         Tab(icon: Icon(Icons.quiz)),
                       ],
                     ),

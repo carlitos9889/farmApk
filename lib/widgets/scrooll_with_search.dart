@@ -1,4 +1,3 @@
-import 'package:farmapk/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class SearcAndScrollJoin extends StatelessWidget {

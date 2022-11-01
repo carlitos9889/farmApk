@@ -31,15 +31,16 @@ class TestPage extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             mainAxisSpacing: 4.0,
             children: List.generate(
-                dataTemas.length, (i) => _quizCard(dataTemas[i], i)),
+                dataTemas.length, (i) => _quizCard(dataTemas[i], i, context)),
           ),
         ),
       ],
     );
   }
 
-  GestureDetector _quizCard(DataTema dataTema, int i) => GestureDetector(
-        onTap: () {},
+  GestureDetector _quizCard(DataTema dataTema, int i, BuildContext context) =>
+      GestureDetector(
+        onTap: () => Navigator.pushNamed(context, 'quiz', arguments: dataTema),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
