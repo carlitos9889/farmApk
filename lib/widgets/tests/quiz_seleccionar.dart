@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class QuizSeleccionar extends StatefulWidget {
-  const QuizSeleccionar({Key? key, required this.quiz}) : super(key: key);
+  const QuizSeleccionar(
+      {Key? key, required this.quiz, required this.estadoBoton})
+      : super(key: key);
   final Quiz quiz;
+  final bool estadoBoton;
 
   @override
   State<QuizSeleccionar> createState() => _QuizSeleccionarState();
@@ -18,9 +21,7 @@ class _QuizSeleccionarState extends State<QuizSeleccionar> {
   @override
   void initState() {
     super.initState();
-    checks.clear();
-    checks =
-        List.generate(widget.quiz.respuestasposibles.length, (index) => false);
+    checks = List.generate(widget.quiz.respuestasposibles.length, (_) => false);
   }
 
   @override

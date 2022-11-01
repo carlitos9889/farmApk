@@ -13,10 +13,10 @@ class QuizForTheme extends StatefulWidget {
 class _QuizForThemeState extends State<QuizForTheme> {
   late PageController pController;
   int currentPage = 0;
+  bool checkBoton = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pController = PageController();
     pController.addListener(() {
@@ -28,7 +28,6 @@ class _QuizForThemeState extends State<QuizForTheme> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     pController.dispose();
   }
@@ -43,9 +42,13 @@ class _QuizForThemeState extends State<QuizForTheme> {
           PageView.builder(
             itemCount: dataTema.quiz.length,
             controller: pController,
+            onPageChanged: _onPageChanged,
             itemBuilder: (_, i) {
               if (dataTema.quiz[i].tipo == 'seleccionar') {
-                return QuizSeleccionar(quiz: dataTema.quiz[i]);
+                return QuizSeleccionar(
+                  quiz: dataTema.quiz[i],
+                  estadoBoton: checkBoton,
+                );
               } else {
                 return Center(
                   child: Align(
@@ -65,7 +68,7 @@ class _QuizForThemeState extends State<QuizForTheme> {
               margin: const EdgeInsets.only(top: 30),
               child: ElevatedButton(
                 style: _styleButton(),
-                onPressed: () {},
+                onPressed: !checkBoton ? _revisarRespuesta : null,
                 child: AutoSizeText.rich(
                   TextSpan(text: 'Revisar', children: [
                     TextSpan(
@@ -80,6 +83,22 @@ class _QuizForThemeState extends State<QuizForTheme> {
         ],
       ),
     );
+  }
+
+  void _onPageChanged(int value) {
+    setState(() {
+      if (value != currentPage) {
+        checkBoton = false;
+      }
+      currentPage = value;
+    });
+  }
+
+  void _revisarRespuesta() {
+    setState(() {
+      checkBoton = true;
+      print(checkBoton);
+    });
   }
 
   ButtonStyle _styleButton() => ElevatedButton.styleFrom(
