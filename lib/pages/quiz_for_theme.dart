@@ -95,10 +95,7 @@ class _QuizForThemeState extends State<QuizForTheme> {
   }
 
   void _revisarRespuesta() {
-    setState(() {
-      checkBoton = true;
-      print(checkBoton);
-    });
+    setState(() => checkBoton = true);
   }
 
   ButtonStyle _styleButton() => ElevatedButton.styleFrom(

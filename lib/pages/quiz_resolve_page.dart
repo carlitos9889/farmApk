@@ -60,14 +60,7 @@ class _ResolveQuizPageState extends State<ResolveQuizPage> {
                         fontWeight: FontWeight.w700, fontSize: 27),
                   ),
                 ),
-                // LinearPercentIndicator(
-                //   lineHeight: 13,
-                //   barRadius: const Radius.circular(100),
-                //   progressColor: const Color(0xff1A86C7),
-                //   percent: numQuiz / widget.quizList.length,
-                //   animation: true,
-                //   animateFromLastPercent: true,
-                // ),
+
                 const Expanded(child: SizedBox()),
                 // ------------- Boton de revisar y pasar al siguinte quiz ---------------- //
                 if (MediaQuery.of(context).viewInsets.bottom == 0)
@@ -127,7 +120,7 @@ class _ResolveQuizPageState extends State<ResolveQuizPage> {
     // final bool estadoBoton = txtButtom == 'Revisar' ? true : false;
     switch (quiz.tipo) {
       case 'seleccionar':
-        return QuizSeleccionar(quiz: quiz);
+        return QuizSeleccionar(quiz: quiz, estadoBoton: true);
       case 'v_f':
         // return QuizCheckGenerico(quiz: quiz, estadoBoton: estadoBoton);
         return const Center(child: Text('En contruccion'));

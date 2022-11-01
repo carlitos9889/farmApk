@@ -1,3 +1,4 @@
+import 'package:farmapk/delegate/search_delegate.dart';
 import 'package:farmapk/helpers/format_data_to_json.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/pages/book_page.dart';
@@ -25,27 +26,35 @@ class HomePage extends StatelessWidget {
           builder: (context, data, child) {
             data.datajson = snapshot.data!;
             return DefaultTabController(
-                length: 3,
-                child: Scaffold(
-                  appBar: AppBar(
-                    title: HeaderTxt(txtSmall: 'Bienvenido, a FarmApk'),
-                    bottom: const TabBar(
-                      indicatorColor: Colors.white,
-                      tabs: [
-                        Tab(icon: Icon(Icons.home)),
-                        Tab(icon: Icon(Icons.book)),
-                        Tab(icon: Icon(Icons.quiz)),
-                      ],
-                    ),
-                  ),
-                  body: TabBarView(
-                    children: [
-                      const InicioPage(),
-                      const BooksPage(),
-                      TestPage(dataTemas: data.datajson.temas)
+              length: 3,
+              child: Scaffold(
+                appBar: AppBar(
+                  title: HeaderTxt(txtSmall: 'Bienvenido, a FarmApk'),
+                  bottom: const TabBar(
+                    indicatorColor: Colors.white,
+                    tabs: [
+                      Tab(icon: Icon(Icons.home)),
+                      Tab(icon: Icon(Icons.book)),
+                      Tab(icon: Icon(Icons.quiz)),
                     ],
                   ),
-                ));
+                ),
+                body: TabBarView(
+                  children: [
+                    const InicioPage(),
+                    const BooksPage(),
+                    TestPage(dataTemas: data.datajson.temas)
+                  ],
+                ),
+                floatingActionButton: FloatingActionButton(
+                  tooltip: 'Buscar Medicamentos',
+                  backgroundColor: const Color(0xff8CC63E),
+                  onPressed: () => showSearch(
+                      context: context, delegate: SearchMedicamentos()),
+                  child: const Icon(Icons.search),
+                ),
+              ),
+            );
           },
         );
       },
