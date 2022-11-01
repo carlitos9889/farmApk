@@ -4,9 +4,11 @@ import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/tests/quiz_chek_generic.dart';
 import 'package:farmapk/widgets/tests/quiz_seleccionar.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizForTheme extends StatefulWidget {
-  const QuizForTheme({Key? key}) : super(key: key);
+  const QuizForTheme({Key? key, required this.dataTema}) : super(key: key);
+  final DataTema dataTema;
 
   @override
   State<QuizForTheme> createState() => _QuizForThemeState();
@@ -21,9 +23,18 @@ class _QuizForThemeState extends State<QuizForTheme> {
   void initState() {
     super.initState();
     pController = SwiperController();
-    pController.addListener(() {
-      setState(() => currentPage = pController.index);
-    });
+    cargarRef();
+  }
+
+  void cargarRef() async {
+    final prefs = await SharedPreferences.getInstance();
+    currentPage = prefs.getInt(widget.dataTema.tema) ?? 0;
+    Future.delayed(
+      const Duration(microseconds: 500),
+      () {
+        pController.move(currentPage, animation: true);
+      },
+    );
   }
 
   @override
@@ -34,25 +45,31 @@ class _QuizForThemeState extends State<QuizForTheme> {
 
   @override
   Widget build(BuildContext context) {
-    final dataTema = ModalRoute.of(context)!.settings.arguments as DataTema;
     return Scaffold(
-      appBar: AppBar(title: const Text('Atrás'), leadingWidth: 20),
+      appBar: AppBar(
+        title: const Text('Atrás'),
+        leadingWidth: 20,
+        leading: IconButton(
+          onPressed: () => _showAlert(widget.dataTema),
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
       body: Stack(
         children: [
           Swiper(
-            itemCount: dataTema.quiz.length,
+            itemCount: widget.dataTema.quiz.length,
             itemBuilder: (context, i) {
-              if (dataTema.quiz[i].tipo == 'seleccionar') {
+              if (widget.dataTema.quiz[i].tipo == 'seleccionar') {
                 return QuizSeleccionar(
-                    quiz: dataTema.quiz[i], estadoBoton: estadoBoton);
-              } else if (dataTema.quiz[i].tipo == 'v_f') {
+                    quiz: widget.dataTema.quiz[i], estadoBoton: estadoBoton);
+              } else if (widget.dataTema.quiz[i].tipo == 'v_f') {
                 return QuizCheckGenerico(
-                    quiz: dataTema.quiz[i], estadoBoton: estadoBoton);
+                    quiz: widget.dataTema.quiz[i], estadoBoton: estadoBoton);
               } else {
                 return Center(
                   child: Align(
                     child: Text(
-                      dataTema.quiz[i].orden,
+                      widget.dataTema.quiz[i].orden,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -60,7 +77,7 @@ class _QuizForThemeState extends State<QuizForTheme> {
               }
             },
             onIndexChanged: _onIndexChanged,
-            controller: SwiperController(),
+            controller: pController,
             control: const SwiperControl(),
           ),
           Align(
@@ -73,7 +90,8 @@ class _QuizForThemeState extends State<QuizForTheme> {
                 child: AutoSizeText.rich(
                   TextSpan(text: 'Revisar', children: [
                     TextSpan(
-                        text: ' ${currentPage + 1}/${dataTema.quiz.length}'),
+                        text:
+                            ' ${currentPage + 1}/${widget.dataTema.quiz.length}'),
                   ]),
                   maxFontSize: 24,
                   minFontSize: 20,
@@ -81,6 +99,33 @@ class _QuizForThemeState extends State<QuizForTheme> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  void _showAlert(DataTema dataTema) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Desea guardar la sección'),
+        actions: [
+          TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                Navigator.pop(context);
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setInt(dataTema.tema, currentPage);
+              },
+              child: const Text('Sí')),
+          TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                Navigator.pop(context);
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.remove(dataTema.tema);
+              },
+              child: const Text('No'))
         ],
       ),
     );

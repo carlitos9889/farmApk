@@ -16,7 +16,6 @@ class QuizSeleccionar extends StatefulWidget {
 
 class _QuizSeleccionarState extends State<QuizSeleccionar> {
   List<bool> checks = [];
-  bool noResolve = false;
 
   @override
   void initState() {
