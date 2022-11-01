@@ -1,7 +1,6 @@
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/provider/logica_provider.dart';
 import 'package:farmapk/widgets/tests/armar_evaluacion.dart';
-import 'package:farmapk/widgets/tests/scrooll_sin_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,64 +35,115 @@ class _QuizSeleccionarState extends State<QuizSeleccionar> {
     final logicaProvider = Provider.of<LogicaProvider>(context);
 
     return Scaffold(
-      body: ScroollWithOutGlow(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // ------------- Pregunta del quiz --------------- //
-              OrdeQuiz(quiz: widget.quiz),
-              // ------------- Genera todas las posibles respuestas
-              Column(
-                children: List.generate(widget.quiz.respuestasposibles.length,
-                    (index) {
-                  if (logicaProvider.estadoBotonCheck == 2) {
-                    logicaProvider.estadoBotonCheck = 0;
-                    checks = List.generate(
-                        widget.quiz.respuestasposibles.length,
-                        (index) => false);
-                  }
-                  return Container(
-                    margin: EdgeInsets.only(
-                      left: size.width * 0.08,
-                      top: 20,
-                      right: size.width * 0.08,
-                    ),
-                    decoration: BoxDecoration(
-                      // color: _getColorBackground(widget.quiz, index),
-                      border: Border.all(
-                          // color: _getColorBorder(widget.quiz, index),
-                          ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: CheckboxListTile(
-                      // activeColor:
-                      //     widget.estadoBoton ? colorGreenAccent : Colors.white,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: checks[index],
-                      title: Text(
-                        widget.quiz.respuestasposibles[index],
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                      // onChanged: widget.estadoBoton
-                      //     ? (value) {
-                      //         setState(() {
-                      //           checks[index] = value!;
-                      //         });
-                      //       }
-                      //     : _logicaRevisar(index),
-                      onChanged: (value) {
-                        setState(() {
-                          checks[index] = value!;
-                        });
-                      },
-                    ),
-                  );
-                }),
-              ),
-            ],
-          ),
+      // body: ScroollWithOutGlow(
+      //   child: Center(
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       children: [
+      //         // ------------- Pregunta del quiz --------------- //
+      //         OrdeQuiz(quiz: widget.quiz),
+      //         // ------------- Genera todas las posibles respuestas
+      //         Column(
+      //           children: List.generate(widget.quiz.respuestasposibles.length,
+      //               (index) {
+      //             if (logicaProvider.estadoBotonCheck == 2) {
+      //               logicaProvider.estadoBotonCheck = 0;
+      //               checks = List.generate(
+      //                   widget.quiz.respuestasposibles.length,
+      //                   (index) => false);
+      //             }
+      // return Container(
+      //   margin: EdgeInsets.only(
+      //     left: size.width * 0.08,
+      //     top: 20,
+      //     right: size.width * 0.08,
+      //   ),
+      //   decoration: BoxDecoration(
+      //     // color: _getColorBackground(widget.quiz, index),
+      //     border: Border.all(
+      //         // color: _getColorBorder(widget.quiz, index),
+      //         ),
+      //     borderRadius: BorderRadius.circular(20),
+      //   ),
+      //   child: CheckboxListTile(
+      //     // activeColor:
+      //     //     widget.estadoBoton ? colorGreenAccent : Colors.white,
+      //     controlAffinity: ListTileControlAffinity.leading,
+      //     value: checks[index],
+      //     title: Text(
+      //       widget.quiz.respuestasposibles[index],
+      //       style: const TextStyle(color: Colors.black),
+      //     ),
+      //     // onChanged: widget.estadoBoton
+      //     //     ? (value) {
+      //     //         setState(() {
+      //     //           checks[index] = value!;
+      //     //         });
+      //     //       }
+      //     //     : _logicaRevisar(index),
+      //     onChanged: (value) {
+      //       setState(() {
+      //         checks[index] = value!;
+      //       });
+      //     },
+      //   ),
+      // );
+      //           }),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      // body: ListView.builder(
+      //   itemCount: widget.quiz.respuestasposibles.length,
+      //   itemBuilder: (context, index) {
+      //     return _listTitle(size, index);
+      //   },
+      // ),
+      body: ListView(
+        children: List.generate(
+          widget.quiz.respuestasposibles.length,
+          (index) => _listTitle(size, index),
+        )..insert(0, OrdeQuiz(quiz: widget.quiz)),
+      ),
+    );
+  }
+
+  Container _listTitle(Size size, int index) {
+    return Container(
+      margin: EdgeInsets.only(
+        left: size.width * 0.08,
+        top: 20,
+        right: size.width * 0.08,
+      ),
+      decoration: BoxDecoration(
+        // color: _getColorBackground(widget.quiz, index),
+        border: Border.all(
+            // color: _getColorBorder(widget.quiz, index),
+            ),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: CheckboxListTile(
+        // activeColor:
+        //     widget.estadoBoton ? colorGreenAccent : Colors.white,
+        controlAffinity: ListTileControlAffinity.leading,
+        value: checks[index],
+        title: Text(
+          widget.quiz.respuestasposibles[index],
+          style: const TextStyle(color: Colors.black),
         ),
+        // onChanged: widget.estadoBoton
+        //     ? (value) {
+        //         setState(() {
+        //           checks[index] = value!;
+        //         });
+        //       }
+        //     : _logicaRevisar(index),
+        onChanged: (value) {
+          setState(() {
+            checks[index] = value!;
+          });
+        },
       ),
     );
   }
