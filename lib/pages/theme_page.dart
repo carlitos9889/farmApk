@@ -14,7 +14,7 @@ class ThemePage extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as DataTema;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Atrás')),
+      appBar: AppBar(title: const Text('Atrás'), leadingWidth: 20),
       body: FadeInLeft(
         child: Column(
           children: [

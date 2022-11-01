@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:farmapk/models/data_json.dart';
+import 'package:farmapk/widgets/tests/quiz_chek_generic.dart';
 import 'package:farmapk/widgets/tests/quiz_seleccionar.dart';
 import 'package:flutter/material.dart';
 
@@ -11,18 +13,16 @@ class QuizForTheme extends StatefulWidget {
 }
 
 class _QuizForThemeState extends State<QuizForTheme> {
-  late PageController pController;
+  late SwiperController pController;
   int currentPage = 0;
-  bool checkBoton = false;
+  bool estadoBoton = false;
 
   @override
   void initState() {
     super.initState();
-    pController = PageController();
+    pController = SwiperController();
     pController.addListener(() {
-      setState(() {
-        currentPage = pController.page!.toInt();
-      });
+      setState(() => currentPage = pController.index);
     });
   }
 
@@ -36,23 +36,21 @@ class _QuizForThemeState extends State<QuizForTheme> {
   Widget build(BuildContext context) {
     final dataTema = ModalRoute.of(context)!.settings.arguments as DataTema;
     return Scaffold(
-      appBar: AppBar(title: const Text('Atrás')),
+      appBar: AppBar(title: const Text('Atrás'), leadingWidth: 20),
       body: Stack(
         children: [
-          PageView.builder(
+          Swiper(
             itemCount: dataTema.quiz.length,
-            controller: pController,
-            onPageChanged: _onPageChanged,
-            itemBuilder: (_, i) {
+            itemBuilder: (context, i) {
               if (dataTema.quiz[i].tipo == 'seleccionar') {
                 return QuizSeleccionar(
-                  quiz: dataTema.quiz[i],
-                  estadoBoton: checkBoton,
-                );
+                    quiz: dataTema.quiz[i], estadoBoton: estadoBoton);
+              } else if (dataTema.quiz[i].tipo == 'v_f') {
+                return QuizCheckGenerico(
+                    quiz: dataTema.quiz[i], estadoBoton: estadoBoton);
               } else {
                 return Center(
                   child: Align(
-                    alignment: Alignment.center,
                     child: Text(
                       dataTema.quiz[i].orden,
                       textAlign: TextAlign.center,
@@ -61,6 +59,9 @@ class _QuizForThemeState extends State<QuizForTheme> {
                 );
               }
             },
+            onIndexChanged: _onIndexChanged,
+            controller: SwiperController(),
+            control: const SwiperControl(),
           ),
           Align(
             alignment: Alignment.topCenter,
@@ -68,7 +69,7 @@ class _QuizForThemeState extends State<QuizForTheme> {
               margin: const EdgeInsets.only(top: 30),
               child: ElevatedButton(
                 style: _styleButton(),
-                onPressed: !checkBoton ? _revisarRespuesta : null,
+                onPressed: !estadoBoton ? _revisarRespuesta : null,
                 child: AutoSizeText.rich(
                   TextSpan(text: 'Revisar', children: [
                     TextSpan(
@@ -85,17 +86,17 @@ class _QuizForThemeState extends State<QuizForTheme> {
     );
   }
 
-  void _onPageChanged(int value) {
+  void _onIndexChanged(int value) {
     setState(() {
       if (value != currentPage) {
-        checkBoton = false;
+        estadoBoton = false;
       }
       currentPage = value;
     });
   }
 
   void _revisarRespuesta() {
-    setState(() => checkBoton = true);
+    setState(() => estadoBoton = true);
   }
 
   ButtonStyle _styleButton() => ElevatedButton.styleFrom(

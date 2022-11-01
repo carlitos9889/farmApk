@@ -16,14 +16,13 @@ class QuizSeleccionar extends StatefulWidget {
 
 class _QuizSeleccionarState extends State<QuizSeleccionar> {
   List<bool> checks = [];
+  bool noResolve = false;
 
   @override
   void initState() {
     super.initState();
-    if (checks.isEmpty) {
-      checks =
-          List.generate(widget.quiz.respuestasposibles.length, (_) => false);
-    }
+    final length = widget.quiz.respuestasposibles.length;
+    checks = List.generate(length, (_) => false);
   }
 
   @override
@@ -55,12 +54,11 @@ class _QuizSeleccionarState extends State<QuizSeleccionar> {
       ),
       decoration: BoxDecoration(
         color: _getColorBackground(widget.quiz, i),
-        border: Border.all(
-          color: _getColorBorder(widget.quiz, i),
-        ),
+        border: Border.all(color: _getColorBorder(widget.quiz, i)),
         borderRadius: BorderRadius.circular(20),
       ),
       child: CheckboxListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         activeColor: !widget.estadoBoton ? colorGreenAccent : Colors.white,
         controlAffinity: ListTileControlAffinity.leading,
         value: checks[i],
@@ -68,11 +66,9 @@ class _QuizSeleccionarState extends State<QuizSeleccionar> {
           widget.quiz.respuestasposibles[i],
           style: const TextStyle(color: Colors.black),
         ),
-        onChanged: (value) {
-          setState(() {
-            checks[i] = value!;
-          });
-        },
+        onChanged: (!widget.estadoBoton)
+            ? (value) => setState(() => checks[i] = value!)
+            : null,
       ),
     );
   }

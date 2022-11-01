@@ -24,10 +24,11 @@ class CardThemeShow extends StatelessWidget {
         },
         itemCount: temas.length,
         pagination: const SwiperPagination(
-            builder: DotSwiperPaginationBuilder(
-          color: Color(0xff1A86C7),
-          activeColor: Color.fromRGBO(62, 198, 116, 0.65),
-        )),
+          builder: DotSwiperPaginationBuilder(
+            color: Color(0xff1A86C7),
+            activeColor: Color.fromRGBO(62, 198, 116, 0.65),
+          ),
+        ),
       ),
     );
   }

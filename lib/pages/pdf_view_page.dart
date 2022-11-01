@@ -18,7 +18,7 @@ class _PdfViewScreenState extends State<PdfViewScreen> {
     final pdf = PdfControllerPinch(document: PdfDocument.openAsset(pathBook));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Atrás')),
+      appBar: AppBar(title: const Text('Atrás'), leadingWidth: 20),
       body: PdfViewPinch(controller: pdf),
     );
   }
