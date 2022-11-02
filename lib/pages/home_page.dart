@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:farmapk/delegate/search_delegate.dart';
 import 'package:farmapk/helpers/format_data_to_json.dart';
 import 'package:farmapk/models/data_json.dart';
@@ -46,12 +47,14 @@ class HomePage extends StatelessWidget {
                     TestPage(dataTemas: data.datajson.temas)
                   ],
                 ),
-                floatingActionButton: FloatingActionButton(
-                  tooltip: 'Buscar Medicamentos',
-                  backgroundColor: const Color(0xff8CC63E),
-                  onPressed: () => showSearch(
-                      context: context, delegate: SearchMedicamentos()),
-                  child: const Icon(Icons.search),
+                floatingActionButton: FadeInUpBig(
+                  child: FloatingActionButton(
+                    tooltip: 'Buscar Medicamentos',
+                    backgroundColor: const Color(0xff8CC63E),
+                    onPressed: () => showSearch(
+                        context: context, delegate: SearchMedicamentos()),
+                    child: const Icon(Icons.search),
+                  ),
                 ),
               ),
             );

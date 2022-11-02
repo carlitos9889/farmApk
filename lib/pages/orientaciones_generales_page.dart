@@ -17,7 +17,18 @@ class OrientacionesGeenrales extends StatelessWidget {
   Widget build(BuildContext context) {
     final Data data = Provider.of<DataJsonPRovider>(context).datajson;
     return Scaffold(
-      appBar: AppBar(leadingWidth: 20, title: const Text('Atrás')),
+      appBar: AppBar(
+        leadingWidth: 120,
+        leading: IconButton(
+          icon: Row(
+            children: const [
+              Icon(Icons.arrow_back),
+              Text('Atrás', style: TextStyle(fontSize: 20)),
+            ],
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
       body: BounceInDown(
         child: SearcAndScrollJoin(
           children: [

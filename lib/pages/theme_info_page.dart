@@ -14,7 +14,18 @@ class ThemeInfoPage extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as TemaGuia;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Atrás'), leadingWidth: 20),
+      appBar: AppBar(
+        leadingWidth: 120,
+        leading: IconButton(
+          icon: Row(
+            children: const [
+              Icon(Icons.arrow_back),
+              Text('Atrás', style: TextStyle(fontSize: 20)),
+            ],
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
       body: BounceInDown(
         child: ListView(
           children: [

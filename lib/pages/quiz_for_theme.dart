@@ -62,14 +62,15 @@ class _QuizForThemeState extends State<QuizForTheme> {
               if (widget.dataTema.quiz[i].tipo == 'seleccionar') {
                 return QuizSeleccionar(
                     quiz: widget.dataTema.quiz[i], estadoBoton: estadoBoton);
-              } else if (widget.dataTema.quiz[i].tipo == 'v_f') {
+              } else if (widget.dataTema.quiz[i].tipo == 'v_f' ||
+                  widget.dataTema.quiz[i].tipo == 'relacionar') {
                 return QuizCheckGenerico(
                     quiz: widget.dataTema.quiz[i], estadoBoton: estadoBoton);
               } else {
                 return Center(
                   child: Align(
                     child: Text(
-                      widget.dataTema.quiz[i].orden,
+                      widget.dataTema.quiz[i].tipo,
                       textAlign: TextAlign.center,
                     ),
                   ),
