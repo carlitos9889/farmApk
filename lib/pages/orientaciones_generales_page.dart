@@ -29,7 +29,7 @@ class OrientacionesGeenrales extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: BounceInDown(
+      body: FadeInLeft(
         child: SearcAndScrollJoin(
           children: [
             Preliminares(data.orientaciones.preliminares),

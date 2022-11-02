@@ -26,7 +26,7 @@ class ThemeInfoPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: BounceInDown(
+      body: FadeInLeft(
         child: ListView(
           children: [
             const SizedBox(height: 20),

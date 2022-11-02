@@ -47,11 +47,15 @@ class _QuizForThemeState extends State<QuizForTheme> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Atrás'),
-        leadingWidth: 20,
+        leadingWidth: 120,
         leading: IconButton(
+          icon: Row(
+            children: const [
+              Icon(Icons.arrow_back),
+              Text('Atrás', style: TextStyle(fontSize: 20)),
+            ],
+          ),
           onPressed: () => _showAlert(widget.dataTema),
-          icon: const Icon(Icons.arrow_back),
         ),
       ),
       body: Stack(

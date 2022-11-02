@@ -48,15 +48,6 @@ class _QuizCheckGenericoState extends State<QuizCheckGenerico> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      //       if (widget.quiz.tipo == 'relacionar')
-      //         Container(
-      //           margin: const EdgeInsets.symmetric(horizontal: 10),
-      //           child: Text(
-      //             opciones,
-      //             textAlign: TextAlign.center,
-      //           ),
-      //         ),
-
       body: widget.quiz.tipo == 'v_f'
           ? ListView(
               children: List.generate(
