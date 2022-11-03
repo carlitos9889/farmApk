@@ -12,6 +12,9 @@ class SearchMedicamentos extends SearchDelegate {
       const TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
 
   @override
+  String get searchFieldLabel => "Buscar Medicamentos";
+
+  @override
   List<Widget>? buildActions(BuildContext context) => [
         IconButton(
           icon: const Icon(Icons.clear),
@@ -39,31 +42,41 @@ class SearchMedicamentos extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return (query.isEmpty)
-        ? const Center(child: CircularProgressIndicator())
-        : FutureBuilder(
-            future: DataFromJson.data.getMedicamentosSugeridos(query),
-            builder: (BuildContext context,
-                AsyncSnapshot<List<Medicamento>> snapshot) {
-              return (snapshot.hasData)
-                  ? Sugestions(
-                      children: snapshot.data!
-                          .map(
-                            (m) => ListTile(
-                              leading: getImageIconMedicamento(m.cap, 40),
-                              title: Text(m.med, style: styleMedicamentoName),
-                              subtitle:
-                                  Text(m.cap, style: styleMedicamentoCapsula),
-                              onTap: () {
-                                medicamento = m;
-                                showResults(context);
-                              },
-                            ),
-                          )
-                          .toList(),
-                    )
-                  : const Center(child: CircularProgressIndicator());
-            },
-          );
+    return FutureBuilder(
+      future: DataFromJson.data.getMedicamentosSugeridos(query),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<Medicamento>> snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data!.isNotEmpty) {
+            return Sugestions(
+              children: snapshot.data!
+                  .map(
+                    (m) => ListTile(
+                      leading: getImageIconMedicamento(m.cap, 40),
+                      title: Text(m.med, style: styleMedicamentoName),
+                      subtitle: Text(m.cap, style: styleMedicamentoCapsula),
+                      onTap: () {
+                        medicamento = m;
+                        showResults(context);
+                      },
+                    ),
+                  )
+                  .toList(),
+            );
+          } else if (query.isNotEmpty && snapshot.data!.isEmpty) {
+            return Center(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'No se han econtrado coincidencias con el medicamento: $query',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+          }
+        }
+        return Container();
+      },
+    );
   }
 }
