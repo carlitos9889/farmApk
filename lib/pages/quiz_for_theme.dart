@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:farmapk/models/data_json.dart';
@@ -6,15 +7,15 @@ import 'package:farmapk/widgets/tests/quiz_seleccionar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class QuizForTheme extends StatefulWidget {
-  const QuizForTheme({Key? key, required this.dataTema}) : super(key: key);
+class QuizForThemePage extends StatefulWidget {
+  const QuizForThemePage({Key? key, required this.dataTema}) : super(key: key);
   final DataTema dataTema;
 
   @override
-  State<QuizForTheme> createState() => _QuizForThemeState();
+  State<QuizForThemePage> createState() => _QuizForThemePageState();
 }
 
-class _QuizForThemeState extends State<QuizForTheme> {
+class _QuizForThemePageState extends State<QuizForThemePage> {
   late SwiperController pController;
   int currentPage = 0;
   bool estadoBoton = false;
@@ -117,16 +118,14 @@ class _QuizForThemeState extends State<QuizForTheme> {
         actions: [
           TextButton(
               onPressed: () async {
-                Navigator.of(context).pop();
-                Navigator.pop(context);
+                AutoRouter.of(context).navigateBack();
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.setInt(dataTema.tema, currentPage);
               },
               child: const Text('Sí')),
           TextButton(
               onPressed: () async {
-                Navigator.of(context).pop();
-                Navigator.pop(context);
+                AutoRouter.of(context).navigateBack();
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.remove(dataTema.tema);
               },

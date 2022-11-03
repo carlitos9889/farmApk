@@ -1,6 +1,6 @@
 import 'package:farmapk/provider/data_provider.dart';
 import 'package:farmapk/provider/logica_provider.dart';
-import 'package:farmapk/routes/routes.dart';
+import 'package:farmapk/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Material App',
       theme: ThemeData(
         fontFamily: 'Poppins',
@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: RoutesApp.getRoutes(),
+      routerDelegate: AppRouter().delegate(),
+      routeInformationParser: AppRouter().defaultRouteParser(),
       // home: const HomePage(),
     );
   }

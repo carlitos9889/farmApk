@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/data_json.dart';
+import 'package:farmapk/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
 class CardGuia extends StatelessWidget {
@@ -26,8 +28,7 @@ class CardGuia extends StatelessWidget {
     );
 
     return GestureDetector(
-      onTap: () =>
-          Navigator.pushNamed(context, 'temaInfo', arguments: temaGuia),
+      onTap: () => AutoRouter.of(context).push(ThemeInfoRoute(guia: temaGuia)),
       child: child,
     );
   }

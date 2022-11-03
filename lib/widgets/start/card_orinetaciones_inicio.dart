@@ -1,11 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:farmapk/helpers/get_icons.dart';
+import 'package:farmapk/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
 class OrientacionesGenerales extends StatelessWidget {
-  const OrientacionesGenerales({
-    Key? key,
-  }) : super(key: key);
+  const OrientacionesGenerales({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _ButtomOrienetacionesGenerales extends StatelessWidget {
     final double ancho = MediaQuery.of(context).size.width;
 
     return MaterialButton(
-      onPressed: () => Navigator.pushNamed(context, 'orientaciones'),
+      onPressed: () => AutoRouter.of(context).pushNamed('orientaciones'),
       color: const Color(0xff8CC63E),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       child: Padding(

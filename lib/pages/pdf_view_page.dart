@@ -1,21 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 
 // ignore: must_be_immutable
-class PdfViewScreen extends StatefulWidget {
-  const PdfViewScreen({Key? key}) : super(key: key);
+class PdfViewPage extends StatefulWidget {
+  const PdfViewPage(this.pathBook, {Key? key}) : super(key: key);
+  final String pathBook;
 
   @override
-  State<PdfViewScreen> createState() => _PdfViewScreenState();
+  State<PdfViewPage> createState() => _PdfViewPageState();
 }
 
-class _PdfViewScreenState extends State<PdfViewScreen> {
+class _PdfViewPageState extends State<PdfViewPage> {
   @override
   Widget build(BuildContext context) {
-    final String pathBook =
-        ModalRoute.of(context)!.settings.arguments as String;
-
-    final pdf = PdfControllerPinch(document: PdfDocument.openAsset(pathBook));
+    final pdf =
+        PdfControllerPinch(document: PdfDocument.openAsset(widget.pathBook));
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +27,7 @@ class _PdfViewScreenState extends State<PdfViewScreen> {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => AutoRouter.of(context).pop(),
         ),
       ),
       body: PdfViewPinch(controller: pdf),

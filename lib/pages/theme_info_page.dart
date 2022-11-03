@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/title_and_info.dart';
@@ -6,13 +7,11 @@ import 'package:farmapk/widgets/title_and_info_enum.dart';
 import 'package:flutter/material.dart';
 
 class ThemeInfoPage extends StatelessWidget {
-  const ThemeInfoPage({Key? key}) : super(key: key);
+  const ThemeInfoPage({Key? key, required this.guia}) : super(key: key);
+  final TemaGuia guia;
 
   @override
   Widget build(BuildContext context) {
-    final TemaGuia guia =
-        ModalRoute.of(context)!.settings.arguments as TemaGuia;
-
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 120,
@@ -23,7 +22,7 @@ class ThemeInfoPage extends StatelessWidget {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => AutoRouter.of(context).pop(),
         ),
       ),
       body: FadeInLeft(
