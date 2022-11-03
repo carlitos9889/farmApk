@@ -78,14 +78,19 @@ class Preliminar extends StatelessWidget {
           children: [
             getIconPrelminar(pre.icon),
             const SizedBox(width: 7.0),
-            Text(
-              pre.preliminar,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(width: 7.0),
-            Text(
-              pre.info,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+            Expanded(
+              child: AutoSizeText.rich(
+                TextSpan(text: pre.preliminar, children: [
+                  TextSpan(
+                    text: ' ${pre.info}',
+                    style: const TextStyle(fontWeight: FontWeight.w400),
+                  )
+                ]),
+                minFontSize: 12,
+                maxFontSize: 14,
+                maxLines: 2,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
             ),
           ],
         ),
