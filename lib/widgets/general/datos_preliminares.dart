@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +55,11 @@ class _HeaderOrientaciones extends StatelessWidget {
     return Container(
       margin:
           EdgeInsets.symmetric(horizontal: size.width * 0.075, vertical: 24),
-      child: const Text(
+      child: const AutoSizeText(
         'Orientaciones Generales',
+        maxFontSize: 25,
+        minFontSize: 20,
+        maxLines: 1,
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
       ),
     );

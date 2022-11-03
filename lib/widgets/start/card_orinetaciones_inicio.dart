@@ -18,6 +18,7 @@ class OrientacionesGenerales extends StatelessWidget {
       elevation: 10,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: size.width < sizePre ? 10 : 0),
+        padding: const EdgeInsets.only(right: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -30,13 +31,20 @@ class OrientacionesGenerales extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AutoSizeText(
-                  'Orientaciones\nGenerales',
-                  minFontSize: 22,
-                  maxFontSize: 25,
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                Container(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: AutoSizeText(
+                    'Orientaciones\nGenerales',
+                    minFontSize: 16,
+                    maxLines: 2,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: size.width < sizePre ? 18 : 21,
+                    ),
+                  ),
                 ),
-                SizedBox(height: size.width < sizePre ? 8 : 16),
+                SizedBox(height: size.width < sizePre ? 8 : 17),
                 const _ButtomOrienetacionesGenerales(),
               ],
             ),
@@ -53,17 +61,22 @@ class _ButtomOrienetacionesGenerales extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double ancho = MediaQuery.of(context).size.width;
+
     return MaterialButton(
       onPressed: () => Navigator.pushNamed(context, 'orientaciones'),
       color: const Color(0xff8CC63E),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      child: const Padding(
-        padding: EdgeInsets.all(10),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
         child: AutoSizeText(
           'Comenzar',
-          maxFontSize: 18,
-          minFontSize: 16,
-          style: TextStyle(fontWeight: FontWeight.w500),
+          minFontSize: 12,
+          maxLines: 1,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: ancho < sizePre ? 13 : 16,
+          ),
         ),
       ),
     );

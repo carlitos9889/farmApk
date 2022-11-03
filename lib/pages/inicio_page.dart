@@ -19,7 +19,7 @@ class InicioPage extends StatelessWidget {
               const OrientacionesGenerales(),
               const Header(txt: 'Temas'),
               const CardThemeShow(),
-              const Header(txt: 'Bibliografia Principal'),
+              const Header(txt: 'Bibliografía Principal'),
               CardBook(Book.docList.first),
               const SizedBox(height: 50)
             ],

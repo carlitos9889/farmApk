@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:flutter/material.dart';
 
@@ -8,24 +9,26 @@ class CardGuia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final child = Container(
+      padding: const EdgeInsets.only(left: 20, right: 10),
+      height: 120,
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: _decoration(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _TemaGuiaName(temaGuia: temaGuia),
+          const Expanded(child: SizedBox()),
+          const _ImgGuia(),
+          const SizedBox(width: 10),
+        ],
+      ),
+    );
+
     return GestureDetector(
       onTap: () =>
           Navigator.pushNamed(context, 'temaInfo', arguments: temaGuia),
-      child: Container(
-        padding: const EdgeInsets.only(left: 20),
-        height: 120,
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: _decoration(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(width: 230, child: _TemaGuiaName(temaGuia: temaGuia)),
-            const Expanded(child: SizedBox()),
-            const _ImgGuia(),
-            const SizedBox(width: 10),
-          ],
-        ),
-      ),
+      child: child,
     );
   }
 
@@ -45,7 +48,7 @@ class _ImgGuia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Image(
-      width: 70,
+      // width: 70,
       image: AssetImage('assets/icon/icon-guia.png'),
       fit: BoxFit.cover,
     );
@@ -59,12 +62,19 @@ class _TemaGuiaName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(
-      temaGuia.temaGuia,
-      maxFontSize: 23,
-      minFontSize: 18,
-      maxLines: 3,
-      style: const TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width < sizePre ? 140 : 230,
+      child: AutoSizeText(
+        temaGuia.temaGuia,
+        maxFontSize: 23,
+        minFontSize: 16,
+        maxLines: 3,
+        style: const TextStyle(
+          fontWeight: FontWeight.w300,
+          color: Colors.white,
+          fontSize: 18,
+        ),
+      ),
     );
   }
 }

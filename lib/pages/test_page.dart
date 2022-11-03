@@ -20,9 +20,9 @@ class TestPage extends StatelessWidget {
           child: const AutoSizeText(
             'Autoevaluaciones',
             maxFontSize: 28,
-            minFontSize: 25,
-            maxLines: 2,
-            style: TextStyle(fontWeight: FontWeight.w500),
+            minFontSize: 20,
+            maxLines: 1,
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
           ),
         ),
         Expanded(

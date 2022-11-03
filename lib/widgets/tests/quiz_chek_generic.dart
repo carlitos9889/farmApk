@@ -9,6 +9,7 @@ class QuizCheckGenerico extends StatefulWidget {
       : super(key: key);
   final Quiz quiz;
   final bool estadoBoton;
+
   @override
   State<QuizCheckGenerico> createState() => _QuizCheckGenericoState();
 }
@@ -18,14 +19,12 @@ class _QuizCheckGenericoState extends State<QuizCheckGenerico> {
   List<int> checksInt = [];
   String opciones = '';
   int index = 0;
-
+  bool touch = false;
   @override
   void initState() {
     super.initState();
-    checks =
-        List.generate(widget.quiz.respuestasposibles.length, (index) => '');
-    checksInt =
-        List.generate(widget.quiz.respuestasposibles.length, (index) => 0);
+    checks = List.generate(widget.quiz.respuestasposibles.length, (_) => '');
+    checksInt = List.generate(widget.quiz.respuestasposibles.length, (_) => 0);
     opciones = widget.quiz.respuestascorrectas
         .map((e) {
           index++;
@@ -48,33 +47,38 @@ class _QuizCheckGenericoState extends State<QuizCheckGenerico> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: widget.quiz.tipo == 'v_f'
-          ? ListView(
-              children: List.generate(
-                widget.quiz.respuestasposibles.length,
-                (i) => _listTitleChecks(size, i),
+        body: widget.quiz.tipo == 'v_f'
+            ? ListView(
+                children: List.generate(
+                  widget.quiz.respuestasposibles.length,
+                  (i) => _listTitleChecks(size, i),
+                )
+                  ..insert(0, OrdeQuiz(quiz: widget.quiz))
+                  ..add(const SizedBox(height: 70)),
               )
-                ..insert(0, OrdeQuiz(quiz: widget.quiz))
-                ..add(const SizedBox(height: 70)),
-            )
-          : ListView(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, top: 100),
-                  child: Text(opciones, textAlign: TextAlign.center),
-                ),
-                Column(
-                  children: List.generate(
-                    widget.quiz.respuestasposibles.length,
-                    (i) => _listTitleChecks(size, i),
+            : ListView(
+                children: [
+                  Container(
+                    margin:
+                        const EdgeInsets.only(left: 10, right: 10, top: 100),
+                    child: Text(opciones, textAlign: TextAlign.center),
                   ),
-                ),
-              ],
-            ),
-    );
+                  Column(
+                    children: List.generate(
+                      widget.quiz.respuestasposibles.length,
+                      (i) => _listTitleChecks(size, i),
+                    ),
+                  ),
+                ],
+              ));
   }
 
   GestureDetector _listTitleChecks(Size size, int i) {
+    if (!touch) {
+      checks = List.generate(widget.quiz.respuestasposibles.length, (_) => '');
+      checksInt =
+          List.generate(widget.quiz.respuestasposibles.length, (_) => 0);
+    }
     return GestureDetector(
       onTap: () =>
           !widget.estadoBoton ? _logicaGestureDetector(widget.quiz, i) : null,
@@ -178,6 +182,7 @@ class _QuizCheckGenericoState extends State<QuizCheckGenerico> {
     if (quiz.tipo == 'relacionar') {
       _logicaGestureDetectorRelcacionar(quiz, index);
     }
+    touch = true;
   }
 
   void _logicaGestureDetectorRelcacionar(Quiz quiz, int index) {

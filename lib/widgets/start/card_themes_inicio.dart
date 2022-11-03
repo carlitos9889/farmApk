@@ -16,13 +16,11 @@ class CardThemeShow extends StatelessWidget {
     final List<DataTema> temas =
         Provider.of<DataJsonPRovider>(context).datajson.temas;
     return SizedBox(
-      height: 170,
+      height: 155,
       width: double.infinity,
       child: Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return _CardTheme(temas[index]);
-        },
         itemCount: temas.length,
+        itemBuilder: (BuildContext context, int i) => _CardTheme(temas[i]),
         pagination: const SwiperPagination(
           builder: DotSwiperPaginationBuilder(
             color: Color(0xff1A86C7),

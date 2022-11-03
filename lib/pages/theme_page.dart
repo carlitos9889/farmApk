@@ -33,12 +33,10 @@ class ThemePage extends StatelessWidget {
             const AutoSizeText(
               'Guías de Studio',
               maxFontSize: 28,
-              minFontSize: 25,
-              maxLines: 2,
+              minFontSize: 22,
+              maxLines: 1,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 26),
             ),
             const SizedBox(height: 10),
             Expanded(
