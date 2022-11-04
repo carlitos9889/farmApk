@@ -8,18 +8,6 @@ import 'package:farmapk/pages/quiz_for_theme.dart';
 import 'package:farmapk/pages/test_page.dart';
 import 'package:farmapk/pages/theme_info_page.dart';
 import 'package:farmapk/pages/theme_page.dart';
-import 'package:flutter/material.dart';
-
-class RoutesApp {
-  static Map<String, WidgetBuilder> getRoutes() => {
-        '/': (context) => const HomePage(),
-        // 'orientaciones': (context) => const OrientacionesGeneralesPage(),
-        // 'guias': (context) => const ThemePage(),
-        // 'temaInfo': (context) => const ThemeInfoPage(),
-        // 'pdf': (context) => const PdfViewPage(),
-        // 'quiz': (context) => const QuizForTheme()
-      };
-}
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
