@@ -47,30 +47,31 @@ class _QuizCheckGenericoState extends State<QuizCheckGenerico> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body: widget.quiz.tipo == 'v_f'
-            ? ListView(
+      body: widget.quiz.tipo == 'v_f'
+          ? ListView(
+              children: List.generate(
+                widget.quiz.respuestasposibles.length,
+                (i) => _listTitleChecks(size, i),
+              )
+                ..insert(0, OrdeQuiz(quiz: widget.quiz))
+                ..add(const SizedBox(height: 70)),
+            )
+          : ListView(
+              children: [
+              Container(
+                margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                child: Text(opciones, textAlign: TextAlign.center),
+              ),
+              Column(
                 children: List.generate(
                   widget.quiz.respuestasposibles.length,
                   (i) => _listTitleChecks(size, i),
-                )
-                  ..insert(0, OrdeQuiz(quiz: widget.quiz))
-                  ..add(const SizedBox(height: 70)),
-              )
-            : ListView(
-                children: [
-                  Container(
-                    margin:
-                        const EdgeInsets.only(left: 10, right: 10, top: 100),
-                    child: Text(opciones, textAlign: TextAlign.center),
-                  ),
-                  Column(
-                    children: List.generate(
-                      widget.quiz.respuestasposibles.length,
-                      (i) => _listTitleChecks(size, i),
-                    ),
-                  ),
-                ],
-              ));
+                ),
+              ),
+            ]..insert(0, OrdeQuiz(quiz: widget.quiz))
+              ..add(const SizedBox(height: 70)),
+              ),
+    );
   }
 
   GestureDetector _listTitleChecks(Size size, int i) {

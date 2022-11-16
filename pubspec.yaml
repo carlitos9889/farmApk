@@ -30,6 +30,7 @@ dependencies:
   animate_do: ^2.1.0
   auto_route: ^5.0.2
   auto_size_text: ^3.0.0
+  beamer: ^1.5.3
   card_swiper: ^2.0.4
   cupertino_icons: ^1.0.2
   flutter:
