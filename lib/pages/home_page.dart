@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_route/auto_route.dart';
+// import 'package:auto_route/auto_route.dart';
 import 'package:farmapk/delegate/search_delegate.dart';
 import 'package:farmapk/helpers/format_data_to_json.dart';
 import 'package:farmapk/models/data_json.dart';
