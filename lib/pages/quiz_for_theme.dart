@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beamer/beamer.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/tests/quiz_chek_generic.dart';
@@ -118,14 +118,16 @@ class _QuizForThemePageState extends State<QuizForThemePage> {
         actions: [
           TextButton(
               onPressed: () async {
-                AutoRouter.of(context).navigateBack();
+                Beamer.of(context).navigator.pop();
+                Beamer.of(context).beamBack();
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.setInt(dataTema.tema, currentPage);
               },
               child: const Text('Sí')),
           TextButton(
               onPressed: () async {
-                AutoRouter.of(context).navigateBack();
+                Beamer.of(context).navigator.pop();
+                Beamer.of(context).beamBack();
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.remove(dataTema.tema);
               },

@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beamer/beamer.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +63,7 @@ class _ButtomOrienetacionesGenerales extends StatelessWidget {
     final double ancho = MediaQuery.of(context).size.width;
 
     return MaterialButton(
-      onPressed: () => AutoRouter.of(context).pushNamed('orientaciones'),
+      onPressed: () => Beamer.of(context).beamToNamed('/orientaciones'),
       color: const Color(0xff8CC63E),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       child: Padding(

@@ -1,13 +1,14 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beamer/beamer.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/data_json.dart';
-import 'package:farmapk/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
 class CardGuia extends StatelessWidget {
-  const CardGuia(this.temaGuia, {Key? key}) : super(key: key);
-  final TemaGuia temaGuia;
+  const CardGuia(this.temaGuia, {Key? key, required this.index})
+      : super(key: key);
+  final List<TemaGuia> temaGuia;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CardGuia extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _TemaGuiaName(temaGuia: temaGuia),
+          _TemaGuiaName(temaGuia: temaGuia[index]),
           const Expanded(child: SizedBox()),
           const _ImgGuia(),
           const SizedBox(width: 10),
@@ -28,7 +29,8 @@ class CardGuia extends StatelessWidget {
     );
 
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(ThemeInfoRoute(guia: temaGuia)),
+      onTap: () =>
+          Beamer.of(context).beamToNamed('/guias/$index', data: temaGuia),
       child: child,
     );
   }

@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 
@@ -27,7 +27,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => AutoRouter.of(context).pop(),
+          onPressed: () => Beamer.of(context).beamBack(),
         ),
       ),
       body: PdfViewPinch(controller: pdf),

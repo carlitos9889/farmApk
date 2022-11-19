@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/provider/data_provider.dart';
 import 'package:farmapk/widgets/general/datos_preliminares.dart';
@@ -27,10 +27,10 @@ class OrientacionesGeneralesPage extends StatelessWidget {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => AutoRouter.of(context).pop(),
+          onPressed: () => Beamer.of(context).beamBack(),
         ),
       ),
-      body: FadeInLeft(
+      body: FadeIn(
         child: SearcAndScrollJoin(
           children: [
             Preliminares(data.orientaciones.preliminares),

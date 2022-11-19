@@ -1,17 +1,20 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/title_and_info.dart';
 import 'package:farmapk/widgets/title_and_info_enum.dart';
 import 'package:flutter/material.dart';
 
 class ThemeInfoPage extends StatelessWidget {
-  const ThemeInfoPage({Key? key, required this.guia}) : super(key: key);
-  final TemaGuia guia;
+  const ThemeInfoPage({Key? key, required this.temas, required this.index})
+      : super(key: key);
+  final List<TemaGuia> temas;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final guia = temas[index];
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 120,
@@ -22,10 +25,10 @@ class ThemeInfoPage extends StatelessWidget {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => AutoRouter.of(context).pop(),
+          onPressed: () => Beamer.of(context).beamBack(),
         ),
       ),
-      body: FadeInLeft(
+      body: FadeIn(
         child: ListView(
           children: [
             const SizedBox(height: 20),

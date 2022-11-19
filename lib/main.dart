@@ -1,6 +1,7 @@
+import 'package:beamer/beamer.dart';
 import 'package:farmapk/provider/data_provider.dart';
 import 'package:farmapk/provider/logica_provider.dart';
-import 'package:farmapk/routes/routes.gr.dart';
+import 'package:farmapk/routes/beamer.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
@@ -34,9 +35,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      routerDelegate: AppRouter().delegate(),
-      routeInformationParser: AppRouter().defaultRouteParser(),
-      // home: const HomePage(),
+      routerDelegate: getRoutesDelegate(),
+      routeInformationParser: BeamerParser(),
+      backButtonDispatcher:
+          BeamerBackButtonDispatcher(delegate: getRoutesDelegate()),
     );
   }
 }

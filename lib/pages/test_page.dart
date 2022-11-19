@@ -1,7 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
-import 'package:farmapk/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
 class TestPage extends StatelessWidget {
@@ -42,8 +41,7 @@ class TestPage extends StatelessWidget {
 
   GestureDetector _quizCard(DataTema dataTema, int i, BuildContext context) =>
       GestureDetector(
-        onTap: () =>
-            AutoRouter.of(context).push(QuizForThemeRoute(dataTema: dataTema)),
+        onTap: () => Beamer.of(context).beamToNamed('/quiz', data: dataTema),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
