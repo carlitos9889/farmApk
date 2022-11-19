@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
@@ -24,27 +23,25 @@ class ThemePage extends StatelessWidget {
           onPressed: () => Beamer.of(context).beamBack(),
         ),
       ),
-      body: FadeIn(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            const AutoSizeText(
-              'Guías de Studio',
-              maxFontSize: 28,
-              minFontSize: 22,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 26),
+      body: Column(
+        children: [
+          const SizedBox(height: 20),
+          const AutoSizeText(
+            'Guías de Studio',
+            maxFontSize: 28,
+            minFontSize: 22,
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 26),
+          ),
+          const SizedBox(height: 10),
+          Expanded(
+            child: ListView.builder(
+              itemCount: tema.length,
+              itemBuilder: (_, index) => CardGuia(tema, index: index),
             ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: tema.length,
-                itemBuilder: (_, index) => CardGuia(tema, index: index),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

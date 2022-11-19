@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/provider/data_provider.dart';
@@ -30,22 +29,20 @@ class OrientacionesGeneralesPage extends StatelessWidget {
           onPressed: () => Beamer.of(context).beamBack(),
         ),
       ),
-      body: FadeIn(
-        child: SearcAndScrollJoin(
-          children: [
-            Preliminares(data.orientaciones.preliminares),
-            TitleAndInfo(
-              header: data.orientaciones.guia[0].header,
-              info: data.orientaciones.guia[0].info,
-            ),
-            TitleAndInfoEnum(
-              title: 'Objetivos Generales de la\nAsignatura',
-              info: data.orientaciones.objetivos,
-            ),
-            TemasInfo(temas: data.temas),
-            const SizedBox(height: 20)
-          ],
-        ),
+      body: SearcAndScrollJoin(
+        children: [
+          Preliminares(data.orientaciones.preliminares),
+          TitleAndInfo(
+            header: data.orientaciones.guia[0].header,
+            info: data.orientaciones.guia[0].info,
+          ),
+          TitleAndInfoEnum(
+            title: 'Objetivos Generales de la\nAsignatura',
+            info: data.orientaciones.objetivos,
+          ),
+          TemasInfo(temas: data.temas),
+          const SizedBox(height: 20)
+        ],
       ),
     );
   }
