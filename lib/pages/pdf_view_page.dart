@@ -1,5 +1,5 @@
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdfx/pdfx.dart';
 
 // ignore: must_be_immutable
@@ -27,7 +27,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => Beamer.of(context).beamBack(),
+          onPressed: () => GoRouter.of(context).pop(),
         ),
       ),
       body: PdfViewPinch(controller: pdf),

@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/provider/data_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class CardThemeShow extends StatelessWidget {
@@ -38,7 +38,7 @@ class _CardTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Beamer.of(context).beamToNamed('/guias', data: tema.guias),
+      onTap: () => GoRouter.of(context).go('/guias', extra: tema.guias),
       child: Card(
         shadowColor: const Color.fromRGBO(0, 0, 0, 0.15),
         elevation: 10,

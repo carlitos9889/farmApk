@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/themes/card_guia.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ThemePage extends StatelessWidget {
   const ThemePage({Key? key, required this.tema}) : super(key: key);
@@ -20,7 +20,7 @@ class ThemePage extends StatelessWidget {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => Beamer.of(context).beamBack(),
+          onPressed: () => GoRouter.of(context).pop(),
         ),
       ),
       body: Column(

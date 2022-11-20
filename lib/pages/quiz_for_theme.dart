@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/tests/quiz_chek_generic.dart';
 import 'package:farmapk/widgets/tests/quiz_seleccionar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizForThemePage extends StatefulWidget {
@@ -118,16 +118,14 @@ class _QuizForThemePageState extends State<QuizForThemePage> {
         actions: [
           TextButton(
               onPressed: () async {
-                Beamer.of(context).navigator.pop();
-                Beamer.of(context).beamBack();
+                GoRouter.of(context).pop();
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.setInt(dataTema.tema, currentPage);
               },
               child: const Text('Sí')),
           TextButton(
               onPressed: () async {
-                Beamer.of(context).navigator.pop();
-                Beamer.of(context).beamBack();
+                GoRouter.of(context).pop();
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.remove(dataTema.tema);
               },

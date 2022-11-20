@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TestPage extends StatelessWidget {
   const TestPage({Key? key, required this.dataTemas}) : super(key: key);
@@ -41,7 +41,7 @@ class TestPage extends StatelessWidget {
 
   GestureDetector _quizCard(DataTema dataTema, int i, BuildContext context) =>
       GestureDetector(
-        onTap: () => Beamer.of(context).beamToNamed('/quiz', data: dataTema),
+        onTap: () => GoRouter.of(context).go('/quiz', extra: dataTema),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

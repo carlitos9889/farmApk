@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CardGuia extends StatelessWidget {
   const CardGuia(this.temaGuia, {Key? key, required this.index})
@@ -29,8 +29,7 @@ class CardGuia extends StatelessWidget {
     );
 
     return GestureDetector(
-      onTap: () =>
-          Beamer.of(context).beamToNamed('/guias/$index', data: temaGuia),
+      onTap: () => GoRouter.of(context).go('/guias/$index', extra: temaGuia),
       child: child,
     );
   }

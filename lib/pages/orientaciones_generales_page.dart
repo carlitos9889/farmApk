@@ -1,4 +1,3 @@
-import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/provider/data_provider.dart';
 import 'package:farmapk/widgets/general/datos_preliminares.dart';
@@ -7,6 +6,7 @@ import 'package:farmapk/widgets/scrooll_with_search.dart';
 import 'package:farmapk/widgets/title_and_info.dart';
 import 'package:farmapk/widgets/title_and_info_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class OrientacionesGeneralesPage extends StatelessWidget {
@@ -26,7 +26,7 @@ class OrientacionesGeneralesPage extends StatelessWidget {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => Beamer.of(context).beamBack(),
+          onPressed: () => GoRouter.of(context).pop(),
         ),
       ),
       body: SearcAndScrollJoin(

@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:farmapk/models/data_json.dart';
 import 'package:farmapk/widgets/title_and_info.dart';
 import 'package:farmapk/widgets/title_and_info_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ThemeInfoPage extends StatelessWidget {
   const ThemeInfoPage({Key? key, required this.temas, required this.index})
@@ -24,7 +24,7 @@ class ThemeInfoPage extends StatelessWidget {
               Text('Atrás', style: TextStyle(fontSize: 20)),
             ],
           ),
-          onPressed: () => Beamer.of(context).beamBack(),
+          onPressed: () => GoRouter.of(context).pop(),
         ),
       ),
       body: ListView(

@@ -29,6 +29,12 @@ class HomePage extends StatelessWidget {
               child: Scaffold(
                 appBar: AppBar(
                   title: const Text('Bienvenido, a FarmApk'),
+                  actions: [
+                    IconButton(
+                      onPressed: () => _showAlert(context),
+                      icon: const Icon(Icons.more_vert_rounded),
+                    )
+                  ],
                   bottom: const TabBar(
                     indicatorColor: Colors.white,
                     tabs: [
@@ -48,6 +54,21 @@ class HomePage extends StatelessWidget {
               ),
             );
           },
+        );
+      },
+    );
+  }
+
+  _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('FarmaApk'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [Text('FarmApk'), Text('')],
+          ),
         );
       },
     );

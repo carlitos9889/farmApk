@@ -1,10 +1,10 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:beamer/beamer.dart';
 import 'package:farmapk/helpers/get_icons.dart';
 import 'package:farmapk/models/document_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // tarjeta de libro
 class CardBook extends StatelessWidget {
@@ -14,7 +14,7 @@ class CardBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Beamer.of(context).beamToNamed('/pdf', data: book.docPath),
+      onTap: () => GoRouter.of(context).go('/pdf', extra: book.docPath),
       child: _CreateCardBook(book: book),
     );
   }
